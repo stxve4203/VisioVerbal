@@ -13,7 +13,6 @@ def get_api_key():
         return None
 
 
-
 def save_api_key():
     api_key = api_key_entry.get()
     if api_key != "":
@@ -46,6 +45,7 @@ def open_text_generator_window():
         image_data = text_generator.generate_image_text()
 
         # Create a formatted text with labels
+        phrase_label.config(text=f"{image_data['Phrase']}")
         title_label.config(text=f"{image_data['Title']}")
         description_label.config(text=f"{image_data['Description']}")
 
@@ -54,6 +54,7 @@ def open_text_generator_window():
         tags_label.config(text=original_tags)
 
         generated_text = (
+            f'\n{image_data["Phrase"]}\n'
             f'\n{image_data["Title"]}\n'
             f'\n'
             f'\n{image_data["Description"]}\n'
@@ -73,6 +74,8 @@ def open_text_generator_window():
         text_generator_window.update()
 
     # Create labels for displaying text
+    phrase_label = ttk.Label(text_generator_window, text="", wraplength=700)
+    phrase_label.pack_forget()
     title_label = ttk.Label(text_generator_window, text="", wraplength=700)
     title_label.pack_forget()
     description_label = ttk.Label(text_generator_window, text="", wraplength=700)
@@ -81,6 +84,10 @@ def open_text_generator_window():
     tags_label.pack_forget()
 
     # Create "Copy" buttons for Title, Description, and Tags
+    copy_phrase_button = ttk.Button(text_generator_window, text="Copy Phrase",
+                                    command=lambda: copy_text(phrase_label.cget("text")))
+    copy_phrase_button.pack(pady=5)
+
     copy_title_button = ttk.Button(text_generator_window, text="Copy Title",
                                    command=lambda: copy_text(title_label.cget("text")))
     copy_title_button.pack(pady=5)
@@ -105,6 +112,7 @@ def open_text_generator_window():
 
     # Start the Tkinter event loop for the text generator window
     text_generator_window.mainloop()
+
 
 if not check_for_existing_api_key():
     # Create the main window for entering the API key

@@ -42,7 +42,6 @@ class TextGenerator():
 
         # Print the list of random prompts
         for prompt in random_prompts:
-            print(prompt)
             return prompt
 
 
@@ -110,12 +109,14 @@ class TextGenerator():
         formatted_description = text_formatter.limit_words_per_line(cleaned_description, max_words_per_line=20)
 
         image_data = {
+                'Phrase': prompt,
                 'Title': cleaned_title,
                 'Description': formatted_description,
                 'Tags': tags_list
         }
 
         with open('generated_texts.txt', 'a') as file:
+            file.write(f"Phrase: {image_data['Phrase']}\n")
             file.write(f"Title: {image_data['Title']}\n")
             file.write("-" * 100 + "\n")
             file.write(f"Description: {image_data['Description']}\n")
