@@ -1,8 +1,5 @@
-import shutil
-
 from PIL import Image
 from tqdm import tqdm
-import time
 import os
 
 
