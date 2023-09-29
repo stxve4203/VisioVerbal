@@ -1,8 +1,9 @@
 import openai
 import json
 import random
-from Helpers import text_formatter
+from helpers import text_formatter
 import os
+import sys
 
 class TextGenerator():
     def __init__(self, api_key):
@@ -14,8 +15,18 @@ class TextGenerator():
 # Generate Phrase
     def generate_phrase(self):
 
-        with open('../data/wordlists/wordlists.json') as json_file:
-            data = json.load(json_file)
+        if getattr(sys, 'frozen', False):
+            base_path = sys._MEIPASS
+        else:
+            base_path = os.path.abspath(os.path.dirname(__file__))
+        data_file_path = os.path.join(base_path, 'data', 'wordlists', 'wordlists.json')
+
+        try:
+            with open(data_file_path) as json_file:
+                data = json.load(json_file)
+
+        except FileNotFoundError:
+            print(f"Error: The file '{data_file_path}' was not found.")
 
         num_prompts = 10
         random_prompts = []
