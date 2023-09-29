@@ -1,11 +1,11 @@
 from model.generator import TextGenerator
 import tkinter as tk
 from tkinter import ttk
-import os
 import clipboard
+from data.CONSTANTS import API_KEY
 
-api_key = os.environ.get('CHATGPT_API_KEY')
-text_generator = TextGenerator(api_key)
+
+text_generator = TextGenerator(API_KEY)
 
 
 # Function to be called when the button is clicked
