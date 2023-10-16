@@ -3,7 +3,7 @@ data/original_images/
 data/resized_images/
 data/CONSTANTS.py/
 data/images_with_text/
-data
+model/api_key.txt
 build/
 dist/gui
 gui.spec
