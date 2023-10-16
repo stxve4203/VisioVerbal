@@ -1,7 +1,7 @@
 import openai
 import json
 import random
-from helpers import text_formatter
+from text_helpers import text_formatter
 import os
 import sys
 
@@ -64,7 +64,7 @@ class TextGenerator():
             response = self.client.ChatCompletion.create(
                 model='gpt-3.5-turbo',
                 messages=[
-                    {'role': 'user', 'content': f'Generate description for {prompt}'}
+                    {'role': 'user', 'content': f'Generate description for {prompt}, max length 250 words.'}
                 ],
                 temperature=temperature
             )
@@ -79,7 +79,7 @@ class TextGenerator():
             response = self.client.ChatCompletion.create(
                 model='gpt-3.5-turbo',
                 messages=[
-                    {'role': 'user', 'content': f'Generate 10 unique tags for {prompt}, without the counting numbers.'}
+                    {'role': 'user', 'content': f'Generate 10 unique tags for {prompt}, without the 1., 2., 3., 4. ... and seperated with , .'}
                 ],
                 temperature=temperature
             )
@@ -114,17 +114,6 @@ class TextGenerator():
                 'Description': formatted_description,
                 'Tags': tags_list
         }
-
-        with open('generated_texts.txt', 'a') as file:
-            file.write(f"Phrase: {image_data['Phrase']}\n")
-            file.write(f"Title: {image_data['Title']}\n")
-            file.write("-" * 100 + "\n")
-            file.write(f"Description: {image_data['Description']}\n")
-            file.write("-" * 100 + "\n")
-            file.write("Tags:\n")
-            for tag in image_data['Tags']:
-                file.write(f"{tag}\n")
-            file.write("-" * 100 + "\n")
 
             # Return the generated data
         return image_data

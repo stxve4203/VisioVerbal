@@ -5,6 +5,18 @@
       <sourceFolder url="file://$MODULE_DIR$/data" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/data/wordlists" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/model" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/automation_image_generation" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/text_with_image_generator" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/text_helpers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated_texts" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/data/constants" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/data/images_with_text" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/data/original_images" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/data/resized_images" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/model/text_with_image_generator/aws" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/text_helpers/text_formatter" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11 (automation_image_generation)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -59,7 +59,7 @@ def open_text_generator_window():
             f'\n'
             f'\n{image_data["Description"]}\n'
             f'\n'
-            f'\n{original_tags}\n'
+            f'\n{original_tags},\n'
         )
 
         # Clear previous text and insert the new generated text
@@ -76,10 +76,13 @@ def open_text_generator_window():
     # Create labels for displaying text
     phrase_label = ttk.Label(text_generator_window, text="", wraplength=700)
     phrase_label.pack_forget()
+
     title_label = ttk.Label(text_generator_window, text="", wraplength=700)
     title_label.pack_forget()
+
     description_label = ttk.Label(text_generator_window, text="", wraplength=700)
     description_label.pack_forget()
+
     tags_label = ttk.Label(text_generator_window, text="", wraplength=700)
     tags_label.pack_forget()
 
@@ -91,9 +94,11 @@ def open_text_generator_window():
     copy_title_button = ttk.Button(text_generator_window, text="Copy Title",
                                    command=lambda: copy_text(title_label.cget("text")))
     copy_title_button.pack(pady=5)
+
     copy_description_button = ttk.Button(text_generator_window, text="Copy Description",
                                          command=lambda: copy_text(description_label.cget("text")))
     copy_description_button.pack(pady=5)
+
     copy_tags_button = ttk.Button(text_generator_window, text="Copy Tags",
                                   command=lambda: copy_text(tags_label.cget("text")))
     copy_tags_button.pack(pady=5)

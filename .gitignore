@@ -2,3 +2,10 @@
 data/original_images/
 data/resized_images/
 data/CONSTANTS.py/
+data/images_with_text/
+data
+build/
+dist/gui
+gui.spec
+automation_image_generation/
+generated_texts.spec
