@@ -1,5 +1,8 @@
+import time
+
 from model.generator import TextGenerator
 import streamlit as st
+
 
 def get_api_key():
     try:
@@ -8,6 +11,7 @@ def get_api_key():
     except FileNotFoundError:
         return None
 
+
 def check_for_existing_api_key():
     api_key = get_api_key()
     if api_key:
@@ -15,25 +19,33 @@ def check_for_existing_api_key():
     else:
         return False
 
+
 def generate_text():
     # Replace this with your TextGenerator logic to generate text
-    generator = TextGenerator(get_api_key())
-    text_data = generator.generate_image_text()
+    with st.spinner('Wait for it...'):
+        time.sleep(5)
+        generator = TextGenerator(get_api_key())
+        text_data = generator.generate_image_text()
 
-    phrase = text_data['Phrase']
-    title = text_data['Title']
-    description = text_data['Description']
-    tags = text_data['Tags']
+        phrase = text_data['Phrase']
+        title = text_data['Title']
+        description = text_data['Description']
+        tags = text_data['Tags']
+        st.success('Done!')
 
-    return phrase, title, description, tags
+        return phrase, title, description, tags
+
+
+""" 
+TO RUN THE STREAMLIT UI:
+python3 -m streamlit run /RelativePath/To/Your/Project/automation_image_generation/model/streamlit_ui/streamlit_ui.py
+
+"""
 
 st.title("Text Generator")
 
 if st.button("Generate Text"):
-    # Generate text
     phrase, title, description, tags = generate_text()
-
-    # Display the generated text
     st.subheader("Generated Phrase")
     st.write(phrase)
     st.subheader("Generated Title")
@@ -42,4 +54,3 @@ if st.button("Generate Text"):
     st.write(description)
     st.subheader('Generated Tags')
     st.write(tags)
-
