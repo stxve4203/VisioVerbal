@@ -19,6 +19,14 @@ resized_height = 6000
 
 original_image_files.sort()
 
+# Iterate through the files and rename them
+for file in original_image_files:
+    if file.startswith('.'):
+        new_name = file[1:]  # Remove the first dot
+        old_path = os.path.join(original_image_path, file)
+        new_path = os.path.join(original_image_path, new_name)
+        os.rename(old_path, new_path)
+
 for filename in tqdm(original_image_files):
     resized_filename = f'{filename.split(".")[0]}_RESIZED.{filename.split(".")[-1]}'
     resized_file_path = os.path.join(resized_images_path, resized_filename)

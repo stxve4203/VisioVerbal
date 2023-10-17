@@ -22,7 +22,7 @@ class TextGenerator():
         data_file_path = os.path.join(base_path, 'data', 'wordlists', 'wordlists.json')
 
         try:
-            with open(data_file_path) as json_file:
+            with open('data/wordlists/wordlists.json') as json_file:
                 data = json.load(json_file)
 
         except FileNotFoundError:
