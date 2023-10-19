@@ -3,9 +3,12 @@ data/original_images/
 data/resized_images/
 data/CONSTANTS.py/
 data/images_with_text/
-model/api_key.txt
+src/api_key.txt
 build/
 dist/gui
 gui.spec
 automation_image_generation/
 generated_texts.spec
+VisioVerbal/.idea
+lib/
+share/
