@@ -56,13 +56,31 @@ class TextGenerator():
             return prompt
 
 
+    def generate_custom_text(self, text, temperature=0.2):
+        try:
+            response = self.client.ChatCompletion.create(
+                model='gpt-4',
+                message=[
+                    {'role': 'user',
+                     'content': text
+                    }
+                ],
+                temperature=temperature
+            )
+            return response['choices'][0]['message']['content']
+        except Exception as e:
+            return str(e)
+
+
 # Generate title
     def generate_title(self, prompt, temperature=0.2):
         try:
             response = self.client.ChatCompletion.create(
                 model='gpt-4',
                 messages=[
-                    {'role': 'user', 'content': f'Generate a title for {prompt}'}
+                    {'role': 'user',
+                     'content': f'Generate a title for {prompt}'
+                    }
                 ],
                 temperature=temperature
             )
@@ -75,7 +93,9 @@ class TextGenerator():
             response = self.client.ChatCompletion.create(
                 model='gpt-4',
                 messages=[
-                    {'role': 'user', 'content': f'Generate description for {prompt}, max length 250 words.'}
+                    {'role': 'user',
+                     'content': f'Generate description for {prompt}, max length 250 words.'
+                     }
                 ],
                 temperature=temperature
             )
@@ -90,7 +110,8 @@ class TextGenerator():
             response = self.client.ChatCompletion.create(
                 model='gpt-4',
                 messages=[
-                    {'role': 'user', 'content': f'Generate 10 unique tags for {prompt}, without the 1., 2., 3., 4. ... and seperated with , .'}
+                    {'role': 'user',
+                     'content': f'Generate 10 unique tags for {prompt}, without the 1., 2., 3., 4. ... and seperated with , .'}
                 ],
                 temperature=temperature
             )

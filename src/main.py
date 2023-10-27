@@ -4,8 +4,8 @@ import os
 
 
 # Path for original_images
-original_image_path = "../data/original_images/"
-resized_images_path = "../data/resized_images/"
+original_image_path = "/Users/steve/PycharmProjects/VisioVerbal_Project/VisioVerbal/data/original_images"
+resized_images_path = "/Users/steve/PycharmProjects/VisioVerbal_Project/VisioVerbal/data/resized_images"
 
 original_image_files = [
     filename for filename in os.listdir(original_image_path) if filename.lower().endswith((".png", ".jpg", ".jpeg"))
@@ -19,7 +19,6 @@ resized_height = 6000
 
 original_image_files.sort()
 
-# Iterate through the files and rename them
 for file in original_image_files:
     if file.startswith('.'):
         new_name = file[1:]  # Remove the first dot
@@ -33,13 +32,12 @@ for filename in tqdm(original_image_files):
 
     if os.path.exists(resized_file_path):
         print(f"Resized image {resized_filename} already exists.. Skipping {filename}...")
-        continue  # Skip to the next iteration
+        continue
 
     original_image = Image.open(os.path.join(original_image_path, filename))
     resized_image = original_image.resize((resized_width, resized_height), Image.Resampling.LANCZOS)
 
     resized_image.save(os.path.join(resized_images_path, resized_filename), quality=100)
     print(f"Resized and saved {filename} as {resized_filename}")
-
 
 print("images saved.")
