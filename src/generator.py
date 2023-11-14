@@ -94,7 +94,7 @@ class TextGenerator():
                 model='gpt-4',
                 messages=[
                     {'role': 'user',
-                     'content': f'Generate description for {prompt}, max length 250 words.'
+                     'content': f'Generate description for {prompt}, max length 250 characters.'
                      }
                 ],
                 temperature=temperature

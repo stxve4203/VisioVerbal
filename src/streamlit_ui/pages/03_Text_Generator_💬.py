@@ -1,3 +1,5 @@
+import streamlit as st
+
 import json
 import time
 import sys
@@ -49,12 +51,14 @@ def load_data(file_path):
         file_contents = file.read()
         return json.loads(file_contents)
 
+#CONFIG
+text_generator = TextGenerator(get_api_key())
 text_directory = 'VisioVerbal/data/recent_text_files'
 text_files = os.listdir(text_directory)
 file_info_list = []
 
 for file_name in text_files:
-    file_path = os.path.join(text_directory, file_name)
+    file_path = os.path.join(text_directory, file_name.upper())
     modification_time = os.path.getmtime(file_path)
     file_info = {'file_name': file_name, 'modification_time': modification_time}
     file_info_list.append(file_info)
@@ -67,19 +71,7 @@ selected_file = "New Text.."
 text_files.append("New Text..")
 selected_file = st.sidebar.selectbox('Select a Text', text_files, index=text_files.index("New Text.."))
 
-text_generator = TextGenerator(get_api_key())
-text_input = st.text_input(label="Put in your custom text")
-
-num_texts_to_generate = st.number_input("Choose the number of texts to generate", min_value=1, max_value=10, value=1, step=1)
-
-if st.button('Generate own custom text.'):
-    phrase = text_generator.generate_custom_text(text_input)
-    st.write(phrase)
-
-
-if st.sidebar.button('Convert Images'):
-    print()
-
+# SIDEBAR
 if st.sidebar.button('Remove All Text Files'):
     try:
         for filename in os.listdir(text_directory):
@@ -88,20 +80,10 @@ if st.sidebar.button('Remove All Text Files'):
     except Exception as e:
         st.sidebar.write(f'Error removing text files {e}.')
 
-
-if st.sidebar.button('Generate New Text'):
-    generated_text_data = generate_text(num_texts_to_generate)
-
-    for idx, text_data in enumerate(generated_text_data):
-        st.subheader(f"Generated Text {idx + 1}")
-        st.write(f"Phrase: {text_data['Phrase']}")
-        st.write(f"Title: {text_data['Title']}")
-        st.write(f"Description: {text_data['Description']}")
-        st.write(f"Tags: {', '.join(text_data['Tags'])}")
+num_texts_to_generate = st.number_input("Choose the number of texts to generate", min_value=1, max_value=10, value=1, step=1)
 
 
 if selected_file == "New Text..":
-    st.write('OR')
     st.write("Create new text!")
     if st.button("Generate Text.."):
         generated_text_data = generate_text(num_texts_to_generate)
